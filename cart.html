@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+    <nav class="bg-red-500 p-4 flex justify-between items-center">
+        <h1 class="text-white text-3xl font-bold">Your cart</h1>
+        <a href="index.html" class="text-white">Back to Menu</a>
+    </nav>
+
+    <section class="container mx-auto mt-8">
+        <div id="cart-items" class="bg-white p-6 rounded shadow-lg">
+            <h2 class="text-2xl font-bold mb-4">Your Cart</h2>
+            <div id="cart-container"></div>
+
+            <!-- Total Amount -->
+            <div class="text-right mt-6">
+                <p id="total-amount" class="text-xl font-bold"></p>
+            </div>
+
+            <!-- Checkout Button -->
+            <button class="mt-4 bg-blue-500 text-white px-6 py-2 rounded" onclick="checkout()">
+                Checkout
+            </button>
+        </div>
+    </section>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function renderCart() {
+            const cartContainer = document.getElementById('cart-container');
+            cartContainer.innerHTML = ''; // Clear existing items
+
+            let totalAmount = 0;
+
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                totalAmount += itemTotal;
+
+                cartContainer.innerHTML += `
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center">
+                            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded mr-4">
+                            <div>
+                                <h3 class="text-lg font-bold">${item.name}</h3>
+                                <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <p class="font-bold mr-4">$${itemTotal.toFixed(2)}</p>
+                            <button class="bg-red-500 text-white px-3 py-1 rounded" onclick="removeItem(${index})">Remove</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('total-amount').textContent = `Total: $${totalAmount.toFixed(2)}`;
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1); // Remove the item at the given index
+            localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
+            renderCart(); // Re-render the cart
+        }
+
+        // Render cart on page load
+        renderCart();
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+
+            // Proceed to checkout (For now, we just clear the cart)
+            alert('Thank you for your order!');
+            cart = [];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart(); // Re-render the cart
+        }
+    </script>
+</body>
+</html>
