@@ -122,3 +122,4 @@ function removeFromCart(index) {
     localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
     renderCart(); // Re-render the cart
 }
+

@@ -10,6 +10,7 @@
 
     <!-- Tailwind CSS for Styling -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+    <script type="module" src="logout.js"defer></script> 
 
     <style>
         /* Apply fonts */
@@ -70,13 +71,13 @@
             </button>
             <div id="dropdown" class="hidden absolute mt-2 bg-white rounded shadow-lg">
                 <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Account</a>
-                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Logout</a>
+                <button id="logout-button" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-200">Logout</button>
             </div>
         </div>
-
+    
         <!-- Title in Center -->
         <h1 class="text-white navbar-title">Momocha</h1>
-
+    
         <!-- Cart Logo as Button -->
         <div class="flex items-center">
             <button id="cart-button" class="text-white focus:outline-none">
@@ -84,6 +85,7 @@
             </button>
         </div>
     </nav>
+    
 
     <!-- Food Category Display -->
     <div class="container mx-auto my-8">
