@@ -1,4 +1,3 @@
-// function
 const menuButton = document.getElementById('menu-button');
 const dropdown = document.getElementById('dropdown');
 const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -122,4 +121,3 @@ function removeFromCart(index) {
     localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
     renderCart(); // Re-render the cart
 }
-

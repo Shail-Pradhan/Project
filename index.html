@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Momocha - Home</title>
-
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
-
     <!-- Tailwind CSS for Styling -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
-    <script type="module" src="logout.js"defer></script> 
-
+    
+    <script src="./check.js" type="module" defer></script>
+    <script src="./app.js" type="module" defer></script>
+    <script src="logout.js" type="module" defer></script>
     <style>
         /* Apply fonts */
         body {
@@ -52,60 +52,67 @@
         .navbar-title {
             font-size: 1.75rem;
         }
+
         /* Apply hover effect to food items */
         .food-item:hover {
             transform: scale(1.05); /* Scale the food item box */
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Add shadow */
         }
 
+        #main-content {
+            display: none;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
 
-    <!-- Navigation Bar -->
-    <nav class="bg-red-500 p-4 flex justify-between items-center">
-        <!-- Menu Logo as Button -->
-        <div class="relative">
-            <button id="menu-button" class="text-white font-semibold focus:outline-none">
-                <img src="./icons/menu_logo.svg" alt="Menu" class="icon inline-block"> <!-- Menu icon here -->
-            </button>
-            <div id="dropdown" class="hidden absolute mt-2 bg-white rounded shadow-lg">
-                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Account</a>
-                <button id="logout-button" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-200">Logout</button>
+    <!-- Loading Screen -->
+    <div id="loading" class="flex justify-center items-center h-screen"></div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <!-- Navigation Bar -->
+        <nav class="bg-red-500 p-4 flex justify-between items-center">
+            <!-- Menu Logo as Button -->
+            <div class="relative">
+                <button id="menu-button" class="text-white font-semibold focus:outline-none">
+                    <img src="./icons/menu_logo.svg" alt="Menu" class="icon inline-block"> <!-- Menu icon here -->
+                </button>
+                <div id="dropdown" class="hidden absolute mt-2 bg-white rounded shadow-lg">
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Account</a>
+                    <button id="logout-button" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-200">Logout</button>
+                </div>
             </div>
-        </div>
-    
-        <!-- Title in Center -->
-        <h1 class="text-white navbar-title">Momocha</h1>
-    
-        <!-- Cart Logo as Button -->
-        <div class="flex items-center">
-            <button id="cart-button" class="text-white focus:outline-none">
-                <img src="./icons/basket.svg" alt="Cart" class="icon"> <!-- Cart icon here -->
-            </button>
-        </div>
-    </nav>
-    
+        
+            <!-- Title in Center -->
+            <h1 class="text-white navbar-title">Momocha</h1>
+        
+            <!-- Cart Logo as Button -->
+            <div class="flex items-center">
+                <button id="cart-button" class="text-white focus:outline-none">
+                    <img src="./icons/basket.svg" alt="Cart" class="icon"> <!-- Cart icon here -->
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Food Category Display -->
+        <div class="container mx-auto my-8">
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-4">
+                <button onclick="showFoodItems('Momo')" class="food-category bg-white rounded shadow-md">Momo</button>
+                <button onclick="showFoodItems('Beverages')" class="food-category bg-white rounded shadow-md">Beverages</button>
+                <button onclick="showFoodItems('Snacks')" class="food-category bg-white rounded shadow-md">Snacks</button>
+                <button onclick="showFoodItems('Noodles')" class="food-category bg-white rounded shadow-md">Noodles</button>
+                <button onclick="showFoodItems('Fried Rice')" class="food-category bg-white rounded shadow-md">Fried Rice</button>
+            </div>
 
-    <!-- Food Category Display -->
-    <div class="container mx-auto my-8">
-        <div class="grid grid-cols-2 sm:grid-cols-5 gap-4">
-            <button onclick="showFoodItems('Momo')" class="food-category bg-white rounded shadow-md">Momo</button>
-            <button onclick="showFoodItems('Beverages')" class="food-category bg-white rounded shadow-md">Beverages</button>
-            <button onclick="showFoodItems('Snacks')" class="food-category bg-white rounded shadow-md">Snacks</button>
-            <button onclick="showFoodItems('Noodles')" class="food-category bg-white rounded shadow-md">Noodles</button>
-            <button onclick="showFoodItems('Fried Rice')" class="food-category bg-white rounded shadow-md">Fried Rice</button>
-        </div>
-
-        <!-- Food Items Section -->
-        <div id="food-items" class="mt-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="food-list">
-                <!-- Food items for Momo category will be displayed by default -->
+            <!-- Food Items Section -->
+            <div id="food-items" class="mt-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="food-list">
+                    <!-- Food items for Momo category will be displayed by default -->
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Link to external JS file -->
-    <script src="app.js"></script>
 </body>
 </html>
